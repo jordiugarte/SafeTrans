@@ -3,6 +3,7 @@ package com.digistring.safetrans;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,9 +38,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String user = userField.getText().toString();
                 String password = passwordField.getText().toString();
+                if (validData(user, password)){
 
-                if (isEmailValid(user) || !password.equals("")){
-                    //Verificar usuario y contrasena
                 } else {
                     new Notification("Ingrese datos válidos", context);
                 }
@@ -47,11 +47,15 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public static boolean isEmailValid(String email) {
-        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
-        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(email);
-        return matcher.matches();
+    public static boolean validData(String email, String password) {
+        String expression1 = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+        Pattern pattern1 = Pattern.compile(expression1, Pattern.CASE_INSENSITIVE);
+        Matcher matcher1 = pattern1.matcher(email);
+        String expression2 = "[^A-Za-z0-9]";
+        Pattern pattern2 = Pattern.compile(expression2, Pattern.CASE_INSENSITIVE);
+        Matcher matcher2 = pattern2.matcher(password);
+        return matcher1.matches() && matcher2.matches();
+        // && (!TextUtils.isEmpty(password) || password.length() > 7 && password.length() < 33)
     }
 
     private void setListeners() {
