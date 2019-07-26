@@ -51,7 +51,7 @@ public class trans extends AppCompatActivity {
                 } else {
                     t.setId(UUID.randomUUID().toString());
                     t.setInfomation(textInformation);
-                    reference.child("Comment").child(t.getId()).setValue(t).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    reference.child("Infomation").child(t.getId()).setValue(t).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {

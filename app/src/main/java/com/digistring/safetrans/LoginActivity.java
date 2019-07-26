@@ -93,11 +93,7 @@ public class LoginActivity extends AppCompatActivity {
                             editor.apply();
                             editor.commit();
                         } else {
-                            if (task.getException() instanceof FirebaseAuthUserCollisionException) {//si se presenta una colisión
-                                Toast.makeText(LoginActivity.this, "Usuario o contrasena invalidos", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(LoginActivity.this, "Usuario o contrasena invalidos", Toast.LENGTH_LONG).show();
-                            }
+                             Toast.makeText(LoginActivity.this, "Usuario o contrasena invalidos", Toast.LENGTH_LONG).show();
                         }
                         progressDialog.dismiss();
                     }
