@@ -72,7 +72,7 @@ public class trans extends AppCompatActivity {
         }
         return true;
     }
-
+//
     private void limparcaja() {
         information.setText("");
     }
