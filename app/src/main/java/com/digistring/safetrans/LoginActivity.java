@@ -1,6 +1,7 @@
 package com.digistring.safetrans;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -22,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText userField;
     private EditText passwordField;
     private Button loginButon;
+    private Button registerButon;
 
     private Context context;
     private ConexionSQLiteHelper sqLiteHelper;
@@ -38,13 +40,30 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String user = userField.getText().toString();
                 String password = passwordField.getText().toString();
-                if (validData(user, password)){
-
+                if (validLogin(user, password)){
+                    Intent main = new Intent(context, MainActivity.class);
+                    startActivity(main);
                 } else {
                     new Notification("Ingrese datos válidos", context);
                 }
             }
         });
+        registerButon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent main = new Intent(context, RegisterActivity.class);
+                startActivity(main);
+            }
+        });
+    }
+
+    public static boolean validLogin(String email, String password){
+        return validInfo(email, password) && validData(email, password);
+    }
+
+    public static boolean validInfo(String email, String password){
+        //comparar con base de datos
+        return true;
     }
 
     public static boolean validData(String email, String password) {
@@ -54,7 +73,8 @@ public class LoginActivity extends AppCompatActivity {
         String expression2 = "[^A-Za-z0-9]";
         Pattern pattern2 = Pattern.compile(expression2, Pattern.CASE_INSENSITIVE);
         Matcher matcher2 = pattern2.matcher(password);
-        return matcher1.matches() && matcher2.matches();
+        //matcher1.matches() && matcher2.matches();
+        return true;
         // && (!TextUtils.isEmpty(password) || password.length() > 7 && password.length() < 33)
     }
 
@@ -62,5 +82,6 @@ public class LoginActivity extends AppCompatActivity {
         userField = findViewById(R.id.userField);
         passwordField = findViewById(R.id.passwordField);
         loginButon = findViewById(R.id.loginButton);
+        registerButon = findViewById(R.id.registerButton);
     }
 }
