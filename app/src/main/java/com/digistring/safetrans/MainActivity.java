@@ -3,7 +3,7 @@ package com.digistring.safetrans;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
-
+import com.digistring.safetrans.dataBase.ConexionSQLiteHelper;
 import com.digistring.safetrans.tools.Clock;
 import com.digistring.safetrans.tools.Process;
 
@@ -15,8 +15,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setListeners();
-
         updateClockView();
+        ConexionSQLiteHelper conn = new ConexionSQLiteHelper(this, "db test_users", null, 1);
     }
 
     private void updateClockView(){

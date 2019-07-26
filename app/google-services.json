@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "554265574114",
+    "firebase_url": "https://gulaapp2.firebaseio.com",
+    "project_id": "gulaapp2",
+    "storage_bucket": "gulaapp2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:554265574114:android:0ec151964b501244",
+        "android_client_info": {
+          "package_name": "com.proyect.GulaApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "554265574114-e9rdl48t520ikjgftcoe0pj95rporrbu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.proyect.GulaApp",
+            "certificate_hash": "eeb7badb5f3ad3cc8311e84b85a853eb69ffc955"
+          }
+        },
+        {
+          "client_id": "554265574114-ave05n8klmc3dhdimkuu6pbplej3g4rq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-t86HylhueAAkGNYD-0U88yAuf5RvWao"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "554265574114-ave05n8klmc3dhdimkuu6pbplej3g4rq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
