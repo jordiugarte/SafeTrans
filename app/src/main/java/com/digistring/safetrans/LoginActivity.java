@@ -98,22 +98,17 @@ public class LoginActivity extends AppCompatActivity {
                         progressDialog.dismiss();
                     }
                 });
-
-
-
         return true;
     }
 
     public static boolean validData(String email, String password) {
-        String expression1 = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+        String expression1 = "^0-9";
         Pattern pattern1 = Pattern.compile(expression1, Pattern.CASE_INSENSITIVE);
         Matcher matcher1 = pattern1.matcher(email);
         String expression2 = "[^A-Za-z0-9]";
         Pattern pattern2 = Pattern.compile(expression2, Pattern.CASE_INSENSITIVE);
         Matcher matcher2 = pattern2.matcher(password);
-        //matcher1.matches() && matcher2.matches();
-        return true;
-        // && (!TextUtils.isEmpty(password) || password.length() > 7 && password.length() < 33)
+        return matcher1.matches() && matcher2.matches();
     }
 
     private void setListeners() {

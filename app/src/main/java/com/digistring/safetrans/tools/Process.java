@@ -9,21 +9,25 @@ public class Process {
     private int lastMinutes;
     private int lastSeconds;
 
-    public Process(Clock clock) {
+    private int income;
+
+    public Process(Clock clock, String user, int amount) {
         RTHours = clock.hours;
         RTMinutes = clock.minutes;
         RTSeconds = clock.seconds;
 
+        /*lastHours = */
+        /*lastMinutes = */
+        /*lastSeconds = */
 
+        /*income = */
     }
 
-    public boolean validation(int hours, int minutes, int seconds) {
-
+    public boolean amountValidation(int hours, int minutes, int seconds) {
         return false;
     }
 
     private boolean timeValidation(int hours, int minutes, int seconds) {
-
         return false;
     }
 }
