@@ -29,18 +29,20 @@ public class LoginActivity extends AppCompatActivity {
     private Button registerButon;
     private Context context;
     private ConexionSQLiteHelper sqLiteHelper;
-    ProgressDialog progressDialog;
     FirebaseAuth firebaseAuth;
+    ProgressDialog progressDialog;
     SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        // one time login implementaion
         sharedPreferences = getSharedPreferences("oneTimeLogin", MODE_PRIVATE);
-
+        //ToDO make the switch for the layout with the one time login
         setContentView(R.layout.activity_login);
         context = getApplicationContext();
+        //firebaseAuth
+        firebaseAuth = FirebaseAuth.getInstance();
         setListeners();
 
         loginButon.setOnClickListener(new View.OnClickListener() {
