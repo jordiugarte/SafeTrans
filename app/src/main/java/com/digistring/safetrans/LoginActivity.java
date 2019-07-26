@@ -72,6 +72,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public boolean validInfo(final String email, String password){
+        final boolean[] temp = {false};
         //comparar con base de datos
         progressDialog.setMessage("Realizando consulta en linea...");
         progressDialog.show();
@@ -92,16 +93,14 @@ public class LoginActivity extends AppCompatActivity {
                             editor.putBoolean("signInValue", true);
                             editor.apply();
                             editor.commit();
+                            temp[0] = true;
                         } else {
                              Toast.makeText(LoginActivity.this, "Usuario o contrasena invalidos", Toast.LENGTH_LONG).show();
                         }
                         progressDialog.dismiss();
                     }
                 });
-
-
-
-        return true;
+        return temp[0];
     }
 
     public static boolean validData(String email, String password) {

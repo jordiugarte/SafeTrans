@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class ConexionSQLiteHelper  extends SQLiteOpenHelper {
 
 
-    final String CREATE_TABLE_USERS="CREATE TABLE test_users(users_name TEXT,password TEXT)";
+    final String CREATE_TABLE_USERS="CREATE TABLE test_users( id INTEGER, password TEXT, time TIME, date DATE )";
 
     public ConexionSQLiteHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);

@@ -45,7 +45,8 @@ public class trans extends AppCompatActivity {
         String textInformation = information.getText().toString();
         Transaction t = new Transaction();
         switch (item.getItemId()) {
-            case (/* action for submit*/): {
+            //ToDo do not forget
+            case (1): {
                 if (textInformation.equals("")) {
                     validacion(textInformation);
                 } else {
