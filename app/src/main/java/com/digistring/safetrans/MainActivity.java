@@ -41,13 +41,13 @@ public class MainActivity extends AppCompatActivity {
 
         userView.setText("Nombre: " + dbH.getPersonalData(id)[1]);
         idView.setText("CI: " + id);
-        incomeView.setText("N de Cuenta: " + dbH.getPersonalData(id)[0]);
+        incomeView.setText("N de Cuenta: " + dbH.getAccount(id));
         accountView.setText("Ingreso mensual: " + dbH.getPersonalData(id)[2]);
 
         processButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String account = accountField.getText().toString();
+                int account = Integer.parseInt(accountField.getText().toString());
                 int amount = Integer.parseInt(amountField.getText().toString());
                 process(account, amount);
             }
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         accountView = findViewById(R.id.accountDescription);
     }
 
-    private void process(String account, int amount) {
+    private void process(int account, int amount) {
         new Process(new Clock(), account, amount);
     }
 }

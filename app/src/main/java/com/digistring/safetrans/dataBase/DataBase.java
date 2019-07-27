@@ -23,13 +23,10 @@ public class DataBase extends SQLiteOpenHelper {
                 " name VARCHAR NOT NULL, " +
                 " income INTEGER NOT NULL ) ");
 
-        db.execSQL("CREATE TABLE account ( id INTEGER PRIMARY KEY NOT NULL, " +
-                " amount INTEGER NOT NULL)");
-
-        db.execSQL("CREATE TABLE propety ( id_user INTEGER ," +
-                "id_account INTEGER, " +
-                "FOREIGN KEY (id_user) REFERENCES user(id), " +
-                " FOREIGN KEY (id_account ) REFERENCES account(id))");
+        db.execSQL("CREATE TABLE account ( id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+                " id_user INTEGER, " +
+                " amount INTEGER NOT NULL, " +
+                " FOREIGN KEY (id_user) REFERENCES user(id))");
 
         db.execSQL("CREATE TABLE tran ( id_account1 INTEGER ," +
                 "id_account2 INTEGER, " +

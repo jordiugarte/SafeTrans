@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 public class DataBaseHelper {
     private SQLiteDatabase database;
@@ -15,15 +14,21 @@ public class DataBaseHelper {
         this.database = instancia.getWritableDatabase();
     }
 
-    public Cursor getALLData() {
+    public Cursor getALLUserData() {
         SQLiteDatabase db = instancia.getWritableDatabase();
         Cursor res = db.rawQuery("select * from user", null);
         return res;
     }
 
+    public Cursor getAccountData() {
+        SQLiteDatabase db = instancia.getWritableDatabase();
+        Cursor res = db.rawQuery("select * from account", null);
+        return res;
+    }
+
     public String[] getPersonalData(int id) {
         String[] data = new String[3];
-        Cursor res = getALLData();
+        Cursor res = getALLUserData();
         while (res.moveToNext()) {
             if (Integer.parseInt(res.getString(0)) == id) {
                 data[0] = res.getString(1);
@@ -34,8 +39,19 @@ public class DataBaseHelper {
         return data;
     }
 
+    public int getAccount(int id) {
+        int account = 0;
+        Cursor res = getAccountData();
+        while (res.moveToNext()) {
+            if (Integer.parseInt(res.getString(1)) == id) {
+                account = res.getInt(0);
+            }
+        }
+        return account;
+    }
+
     public boolean login(int id_user, String password) {
-        Cursor res = getALLData();
+        Cursor res = getALLUserData();
         if (res.getCount() == 0) {
             return false;
         }
@@ -72,7 +88,12 @@ public class DataBaseHelper {
         contentValues.put("name", name);
         contentValues.put("income", income);
 
+        ContentValues accountValues = new ContentValues();
+        accountValues.putNull("id");
+        accountValues.put("id_user", id);
+        accountValues.put("amount", 100000);
+
         this.database.insert("user", null, contentValues);
-        this.database.close();
+        this.database.insert("account", null, accountValues);
     }
 }

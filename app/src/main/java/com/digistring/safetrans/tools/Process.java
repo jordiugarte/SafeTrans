@@ -17,7 +17,7 @@ public class Process {
 
     private int income;
 
-    public Process(Clock clock, String user, int amount) {
+    public Process(Clock clock, int account, int amount) {
         RTHours = clock.hours;
         /*lastHours = */
         RTDate = calendar.getTime();
