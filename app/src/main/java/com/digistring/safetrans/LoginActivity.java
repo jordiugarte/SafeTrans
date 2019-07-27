@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.digistring.safetrans.dataBase.DataBaseHelper;
 import com.digistring.safetrans.tools.Notification;
 import com.digistring.safetrans.dataBase.ConexionSQLiteHelper;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,25 +29,26 @@ public class LoginActivity extends AppCompatActivity {
     private EditText passwordField;
     private Button loginButon;
     private Button registerButon;
-    private Context context;
+    private Context context = this;
     private ConexionSQLiteHelper sqLiteHelper;
     FirebaseAuth firebaseAuth;
     ProgressDialog progressDialog;
     SharedPreferences sharedPreferences;
+    DataBaseHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // one time login implementaion
-        sharedPreferences = getSharedPreferences("oneTimeLogin", MODE_PRIVATE);
+       sharedPreferences = getSharedPreferences("oneTimeLogin", MODE_PRIVATE);
         //ToDO make the switch for the layout with the one time login
         setContentView(R.layout.activity_login);
-        context = getApplicationContext();
         //firebaseAuth
         firebaseAuth = FirebaseAuth.getInstance();
         setListeners();
+        helper = new DataBaseHelper(context);
 
-        loginButon.setOnClickListener(new View.OnClickListener() {
+       loginButon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String user = userField.getText().toString();
@@ -71,34 +74,8 @@ public class LoginActivity extends AppCompatActivity {
         return validInfo(email, password) && validData(email, password);
     }
 
-    public boolean validInfo(final String email, String password){
-        //comparar con base de datos
-        progressDialog.setMessage("Realizando consulta en linea...");
-        progressDialog.show();
-
-        //log in user
-        firebaseAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        //checking if success
-                        if (task.isSuccessful()) {
-                            int pos = email.indexOf("@");
-                            String user = email.substring(0, pos);
-                            Toast.makeText(LoginActivity.this, "Bienvenido", Toast.LENGTH_SHORT).show();
-                            Intent intencion = new Intent(getApplication(), MainActivity.class);
-                            //implementacion onelogin
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putBoolean("signInValue", true);
-                            editor.apply();
-                            editor.commit();
-                        } else {
-                             Toast.makeText(LoginActivity.this, "Usuario o contrasena invalidos", Toast.LENGTH_LONG).show();
-                        }
-                        progressDialog.dismiss();
-                    }
-                });
-        return true;
+    public boolean validInfo(final String id, String password){
+        return helper.login(Integer.parseInt(id),password);
     }
 
     public static boolean validData(String email, String password) {
