@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.digistring.safetrans.dataBase.ConexionSQLiteHelper;
 import com.digistring.safetrans.dataBase.DataBaseHelper;
 import com.digistring.safetrans.tools.Clock;
+import com.digistring.safetrans.tools.Notification;
 import com.digistring.safetrans.tools.Process;
 
 import java.text.SimpleDateFormat;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView accountView;
 
     private int id;
+    private int thisAccount;
     private Clock clock;
     private SimpleDateFormat dateFormat;
 
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         incomeView.setText("N de Cuenta: " + dbH.getAccount(id));
         accountView.setText("Ingreso mensual: " + dbH.getPersonalData(id)[2]);
 
+        thisAccount = dbH.getAccount(id);
         processButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,6 +96,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void process(int account, int amount) {
-        new Process(new Clock(), account, amount);
+        Process p = new Process(getApplicationContext(), clock, thisAccount, account, amount, id);
+        boolean validAmount = p.amountValidation();
+        if (validAmount) {
+            new Notification("Transaccion realizada con exito", getApplicationContext());
+        } else {
+            new Notification("No se puede realizar la transaccion", getApplicationContext());
+        }
     }
 }

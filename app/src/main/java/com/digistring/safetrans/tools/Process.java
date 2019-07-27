@@ -1,9 +1,15 @@
 package com.digistring.safetrans.tools;
 
+import android.content.ContentValues;
+import android.content.Context;
+
+import com.digistring.safetrans.dataBase.DataBaseHelper;
+
 import java.util.Calendar;
 import java.util.Date;
 
 public class Process {
+    private Context context;
     private Calendar calendar;
 
     private static int RTHours;
@@ -17,29 +23,30 @@ public class Process {
 
     private int income;
 
-    public Process(Clock clock, int account, int amount) {
+    public Process(Context context, Clock clock, int account1, int account2, int amount, int id) {
+        this.context = context;
+        calendar = Calendar.getInstance();
+        DataBaseHelper dbH = new DataBaseHelper(context);
         RTHours = clock.hours;
-        /*lastHours = */
+        //lastHours = dbH.getLastDate()
         RTDate = calendar.getTime();
-
-        /*lastHours = */
         /*lastDate = */
-
-        /*income = */
+        RTAmount = amount;
+        income = Integer.parseInt(dbH.getPersonalData(id)[2]);
     }
 
-    public boolean amountValidation(int hours, int minutes, int seconds) {
-        if (hoursBetween(RTDate, lastDate) / 10 < income * 2) {
-            return false;
+    public boolean amountValidation() {
+        if (RTAmount > income) {
+            if (((float) (RTAmount - income) / (float) RTAmount) > 0.9f) {
+                if (true) {
+                   return false;
+                }
+            } else {
+                return true;
+            }
         } else {
-
+            return true;
         }
-        return true;
-    }
-
-    private float constant() {
-        long hoursDifference = hoursBetween(RTDate, lastDate);
-        return hoursDifference / 10;
     }
 
     private static long hoursBetween(Date one, Date two) {

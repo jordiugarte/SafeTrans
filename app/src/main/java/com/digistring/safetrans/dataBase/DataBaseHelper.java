@@ -5,6 +5,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class DataBaseHelper {
     private SQLiteDatabase database;
     DataBase instancia;
@@ -23,6 +27,12 @@ public class DataBaseHelper {
     public Cursor getAccountData() {
         SQLiteDatabase db = instancia.getWritableDatabase();
         Cursor res = db.rawQuery("select * from account", null);
+        return res;
+    }
+
+    public Cursor getTransData() {
+        SQLiteDatabase db = instancia.getWritableDatabase();
+        Cursor res = db.rawQuery("select * from trans", null);
         return res;
     }
 
@@ -49,6 +59,21 @@ public class DataBaseHelper {
         }
         return account;
     }
+
+    /*public Date getLastDate(int id) {
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        Date date = new Date();
+        String dateStr;
+        Cursor res = getTransData();
+        while (res.moveToNext()) {
+            if (Integer.parseInt(res.getString(0)) == id) {
+                String temp = res.getString(2);
+                date = dateFormat.parse(temp);
+            }
+        }
+        Date date = dateFormat.format(Date);
+        return new date;
+    }*/
 
     public boolean login(int id_user, String password) {
         Cursor res = getALLUserData();
