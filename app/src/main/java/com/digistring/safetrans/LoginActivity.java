@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public boolean validLogin(String email, String password){
-        return validInfo(email, password) && validData(email, password);
+        return validInfo(email, password); /*&& validData(email, password);*/
     }
 
     public boolean validInfo(final String id, String password){

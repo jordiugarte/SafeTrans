@@ -44,7 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
         String name = textName.getText().toString();
         int income = Integer.parseInt(textIncome.getText().toString());
         helper.insertUser(id,password,name,income);
-        Intent main = new Intent(this, MainActivity.class);
+        Intent main = new Intent(this, LoginActivity.class);
         startActivity(main);
     }
 

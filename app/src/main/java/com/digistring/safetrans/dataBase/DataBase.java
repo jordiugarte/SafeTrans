@@ -34,6 +34,7 @@ public class DataBase extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE tran ( id_account1 INTEGER ," +
                 "id_account2 INTEGER, " +
                 " date DATETIME_REAL," +
+                " amount INTEGER," +
                 "FOREIGN KEY (id_account1) REFERENCES account (id), " +
                 " FOREIGN KEY (id_account2 ) REFERENCES account(id))");
 
