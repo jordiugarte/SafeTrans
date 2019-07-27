@@ -1,33 +1,56 @@
 package com.digistring.safetrans.tools;
 
-public class Process {
-    private int RTHours;
-    private int RTMinutes;
-    private int RTSeconds;
+import java.util.Calendar;
+import java.util.Date;
 
-    private int lastHours;
-    private int lastMinutes;
-    private int lastSeconds;
+public class Process {
+    private Calendar calendar;
+
+    private static int RTHours;
+    private static int lastHours;
+
+    private static Date RTDate;
+    private static Date lastDate;
+
+    private int lastAmount;
+    private int RTAmount;
 
     private int income;
 
     public Process(Clock clock, String user, int amount) {
         RTHours = clock.hours;
-        RTMinutes = clock.minutes;
-        RTSeconds = clock.seconds;
+        /*lastHours = */
+        RTDate = calendar.getTime();
 
         /*lastHours = */
-        /*lastMinutes = */
-        /*lastSeconds = */
+        /*lastDate = */
 
         /*income = */
     }
 
     public boolean amountValidation(int hours, int minutes, int seconds) {
-        return false;
+        if (hoursBetween(RTDate, lastDate) / 10 < income * 2) {
+            return false;
+        } else {
+
+        }
+        return true;
     }
 
-    private boolean timeValidation(int hours, int minutes, int seconds) {
-        return false;
+    private float constant() {
+        long hoursDifference = hoursBetween(RTDate, lastDate);
+        return hoursDifference / 10;
+    }
+
+    private static long hoursBetween(Date one, Date two) {
+        int hoursDifference = (int) (daysBetween(one, two)) * 24;
+        int plusHours = RTHours - lastHours;
+        long difference = hoursDifference + plusHours;
+        return difference;
+    }
+
+    private static long daysBetween(Date one, Date two) {
+        long difference = (one.getTime() - two.getTime()) / 86400000;
+        return Math.abs(difference);
     }
 }

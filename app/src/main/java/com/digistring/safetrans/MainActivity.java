@@ -8,13 +8,21 @@ import com.digistring.safetrans.dataBase.ConexionSQLiteHelper;
 import com.digistring.safetrans.tools.Clock;
 import com.digistring.safetrans.tools.Process;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class MainActivity extends AppCompatActivity {
     private TextView clockView;
+    private TextView dateView;
     private TextView accountField;
     private TextView amountField;
     private TextView processButton;
+    private TextView userView;
+    private TextView incomeView;
+    private TextView accountView;
 
     private Clock clock;
+    private SimpleDateFormat dateFormat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateClockView(){
+        dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        final Calendar calendar = Calendar.getInstance();
         Thread t = new Thread(){
             @Override
             public void run(){
@@ -45,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
                             public void run() {
                                 clock = new Clock();
                                 clockView.setText(clock.hours + ":" + clock.minutes + ":" + clock.seconds);
+                                dateView.setText(dateFormat.format(calendar.getTime()));
                             }
                         });
                         Thread.sleep(1000);
@@ -59,9 +70,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void setListeners() {
         clockView = findViewById(R.id.clockView);
+        dateView = findViewById(R.id.dateView);
         accountField = findViewById(R.id.accountField);
         amountField = findViewById(R.id.mountField);
         processButton = findViewById(R.id.processButton);
+        userView = findViewById(R.id.nameDescription);
+        incomeView = findViewById(R.id.incomeDescription);
+        accountView = findViewById(R.id.accountDescription);
     }
 
     private void process(String account, int amount) {
