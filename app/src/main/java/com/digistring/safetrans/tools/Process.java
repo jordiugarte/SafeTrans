@@ -34,7 +34,7 @@ public class Process {
         RTAmount = amount;
         income = Integer.parseInt(dbH.getPersonalData(id)[2]);
     }
-
+//
     public boolean amountValidation() {
         if (RTAmount > income) {
             if (((float) (RTAmount - income) / (float) RTAmount) > 0.9f) {
