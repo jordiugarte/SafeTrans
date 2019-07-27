@@ -5,6 +5,7 @@
     android:id="@+id/content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".LoginActivity">
 
     <TextView
@@ -16,6 +17,7 @@
         android:layout_marginRight="50dp"
         android:text="SAFE TRANS"
         android:textSize="72sp"
+        android:textColor="#FDF8F8"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -36,6 +38,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="CI"
+            android:textColor="#F0E7E7"
+            android:textColorHint="#F0E7E7"
             android:inputType="number|textPersonName" />
 
         <EditText
@@ -44,6 +48,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Contraseña"
+            android:textColor="#F0E7E7"
+            android:textColorHint="#F0E7E7"
             android:inputType="textPassword" />
 
     </LinearLayout>

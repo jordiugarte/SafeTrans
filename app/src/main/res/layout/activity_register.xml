@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".RegisterActivity">
 
 
@@ -27,49 +28,54 @@
             android:id="@+id/id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="15dp"
             android:ems="10"
             android:hint=" ID / NIT "
+            android:textColor="#F0E7E7"
+            android:textColorHint="#F0E7E7"
             android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="65dp"
+            android:layout_marginRight="15dp"
             android:ems="10"
             android:hint=" Contraseña"
+            android:textColor="#F0E7E7"
+            android:textColorHint="#F0E7E7"
             android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="110dp"
+            android:layout_marginRight="15dp"
             android:ems="10"
-            android:hint=" Nombre Completo "
-            android:inputType="textPersonName" />
+            android:hint="Nombre"
+            android:inputType="textPersonName"
+            android:textColor="#F0E7E7"
+            android:textColorHint="#F0E7E7"/>
 
         <EditText
             android:id="@+id/income"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="65dp"
+            android:layout_marginRight="15dp"
             android:ems="10"
             android:hint=" Ingreso "
-            android:inputType="textPersonName" />
+            android:textColor="#F0E7E7"
+            android:textColorHint="#F0E7E7"
+            android:inputType="textPersonName"
+            />
 
         <FrameLayout
             android:layout_width="match_parent"
