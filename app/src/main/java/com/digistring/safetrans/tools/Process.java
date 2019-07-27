@@ -27,6 +27,7 @@ public class Process {
         this.context = context;
         calendar = Calendar.getInstance();
         DataBaseHelper dbH = new DataBaseHelper(context);
+
         RTHours = clock.hours;
         //lastHours = dbH.getLastDate()
         RTDate = calendar.getTime();
@@ -34,12 +35,15 @@ public class Process {
         RTAmount = amount;
         income = Integer.parseInt(dbH.getPersonalData(id)[2]);
     }
-//
+
+    //
     public boolean amountValidation() {
         if (RTAmount > income) {
             if (((float) (RTAmount - income) / (float) RTAmount) > 0.9f) {
-                if (true) {
-                   return false;
+                if (hoursBetween(RTDate, lastDate) < ((lastAmount - income) / lastAmount) / 7) {
+                    return false;
+                } else {
+                    return true;
                 }
             } else {
                 return true;
