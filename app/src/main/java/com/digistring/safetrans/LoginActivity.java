@@ -55,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
                 String password = passwordField.getText().toString();
                 if (validLogin(user, password)){
                     Intent main = new Intent(context, MainActivity.class);
+                    main.putExtra("id", Integer.parseInt(userField.getText().toString()));
                     startActivity(main);
                 } else {
                     new Notification("Ingrese datos válidos", context);

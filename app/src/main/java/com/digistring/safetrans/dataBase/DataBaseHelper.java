@@ -15,10 +15,23 @@ public class DataBaseHelper {
         this.database = instancia.getWritableDatabase();
     }
 
-    public Cursor getALLData (){
+    public Cursor getALLData() {
         SQLiteDatabase db = instancia.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from user" ,null  );
-        return  res;
+        Cursor res = db.rawQuery("select * from user", null);
+        return res;
+    }
+
+    public String[] getPersonalData(int id) {
+        String[] data = new String[3];
+        Cursor res = getALLData();
+        while (res.moveToNext()) {
+            if (Integer.parseInt(res.getString(0)) == id) {
+                data[0] = res.getString(1);
+                data[1] = res.getString(2);
+                data[2] = res.getString(3);
+            }
+        }
+        return data;
     }
 
     public boolean login(int id_user, String password) {
@@ -52,7 +65,7 @@ public class DataBaseHelper {
             return false;
         }*/
 
-    public void insertUser (int id, String password, String name, int income){
+    public void insertUser(int id, String password, String name, int income) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("id", id);
         contentValues.put("password", password);

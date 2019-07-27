@@ -4,7 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
 import com.digistring.safetrans.dataBase.ConexionSQLiteHelper;
+import com.digistring.safetrans.dataBase.DataBaseHelper;
 import com.digistring.safetrans.tools.Clock;
 import com.digistring.safetrans.tools.Process;
 
@@ -18,9 +20,11 @@ public class MainActivity extends AppCompatActivity {
     private TextView amountField;
     private TextView processButton;
     private TextView userView;
+    private TextView idView;
     private TextView incomeView;
     private TextView accountView;
 
+    private int id;
     private Clock clock;
     private SimpleDateFormat dateFormat;
 
@@ -31,6 +35,14 @@ public class MainActivity extends AppCompatActivity {
         setListeners();
         updateClockView();
         ConexionSQLiteHelper conn = new ConexionSQLiteHelper(this, "db test_users", null, 1);
+        DataBaseHelper dbH = new DataBaseHelper(getApplicationContext());
+
+        id = getIntent().getIntExtra("id", 0);
+
+        userView.setText("Nombre: " + dbH.getPersonalData(id)[1]);
+        idView.setText("CI: " + id);
+        incomeView.setText("N de Cuenta: " + dbH.getPersonalData(id)[0]);
+        accountView.setText("Ingreso mensual: " + dbH.getPersonalData(id)[2]);
 
         processButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,14 +54,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void updateClockView(){
+    private void updateClockView() {
         dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         final Calendar calendar = Calendar.getInstance();
-        Thread t = new Thread(){
+        Thread t = new Thread() {
             @Override
-            public void run(){
+            public void run() {
                 try {
-                    while (!isInterrupted()){
+                    while (!isInterrupted()) {
                         MainActivity.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -75,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
         amountField = findViewById(R.id.mountField);
         processButton = findViewById(R.id.processButton);
         userView = findViewById(R.id.nameDescription);
+        idView = findViewById(R.id.idDescription);
         incomeView = findViewById(R.id.incomeDescription);
         accountView = findViewById(R.id.accountDescription);
     }
