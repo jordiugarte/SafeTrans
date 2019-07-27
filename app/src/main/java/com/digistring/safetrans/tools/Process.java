@@ -40,8 +40,12 @@ public class Process {
     public boolean amountValidation() {
         if (RTAmount > income) {
             if (((float) (RTAmount - income) / (float) RTAmount) > 0.9f) {
-                if (hoursBetween(RTDate, lastDate) < ((lastAmount - income) / lastAmount) / 7) {
-                    return false;
+                if ((float) RTAmount / 30 > (float) (income / 30) * 30/*daysBetween(RTDate, lastDate)*/) {
+                    if (lastAmount > income) {
+                        return false;
+                    } else {
+                        return true;
+                    }
                 } else {
                     return true;
                 }
@@ -51,13 +55,6 @@ public class Process {
         } else {
             return true;
         }
-    }
-
-    private static long hoursBetween(Date one, Date two) {
-        int hoursDifference = (int) (daysBetween(one, two)) * 24;
-        int plusHours = RTHours - lastHours;
-        long difference = hoursDifference + plusHours;
-        return difference;
     }
 
     private static long daysBetween(Date one, Date two) {
